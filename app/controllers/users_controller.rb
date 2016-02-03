@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+  before_action :check_user, only: [:edit,:update]
   before_action :set_user, only: [:edit, :update]
-
+  
   def show
     @user = User.find(params[:id])
   end
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
   end
   
   def edit
+    @user = User.find(params[:id])
   end
   
   def update
@@ -41,4 +43,12 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
+  
+  def check_user
+    if current_user != User.find(params[:id])
+      flash[:danger] = "ログインしてください"
+      redirect_to login_path
+    end
+  end
+  
 end
