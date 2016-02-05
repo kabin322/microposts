@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   
   def followings
     @user = set_user
-    following_users.all
+    following_users.al
   end
   
   def followers
