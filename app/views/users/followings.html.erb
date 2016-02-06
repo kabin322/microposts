@@ -1,0 +1,35 @@
+<div class="row">
+  <aside class="col-xs-4">
+    <section class="user-info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-xs-8">
+    <section class="followings">
+      <% if @user.following_users.any? %>
+        <h3>Followings (<%= @user.following_users.count %>)</h3>
+        <% @users.each do |u| %>
+        <div>
+          <span><%= gravatar_for u %></span>
+          <h3><%= u.name %></h3>
+        </div>
+          <p>
+            <% if current_user != u %>
+            <div id="follow_form">
+              <% if current_user.following?(@user) %>
+                <%= render 'unfollow' %>
+              <% else %>
+                <%= render 'follow' %>
+              <% end %>
+              <hr>
+            </div>
+            <% end %>
+          </p>
+        <% end %>
+      <% end %> 
+    </section>
+  </div>
+</div>

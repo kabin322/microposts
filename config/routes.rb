@@ -6,9 +6,13 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   get 'edit', to:'users#edit'
-  post 'edit', to:'users#update'
-  
+  post 'edit', to:'users#update' 
 
-  resources :users
+  resources :users do
+      get :followings
+      get :followers
+  end
   resources :sessions, only: [:new, :create, :destroy]
+  resources :microposts
+  resources :relationships, only: [:create, :destroy]
 end
