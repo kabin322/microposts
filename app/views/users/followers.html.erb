@@ -9,26 +9,32 @@
   </aside>
   <div class="col-xs-8">
     <section class="followers">
-      <% if @user.follower_users.any? %>
-        <h3>Followers (<%= @user.follower_users.count %>)</h3>
-        <% @users.each do |u| %>
-        <div>
-          <span><%= gravatar_for u %></span>
-          <h3><%= u.name %></h3>
-        </div>
-          <p>
-            <% if current_user != u %>
-            <div id="follow_form">
-              <% if current_user.following?(@user) %>
-                <%= render 'unfollow' %>
-              <% else %>
-                <%= render 'follow' %>
-              <% end %>
-              <hr>
+      <% if logged_in? %>
+        <% if @user.follower_users.any? %>
+          <h3>Followers (<%= @user.follower_users.count-1 %>)</h3>
+          <% @users.each do |u| %>
+            <% unless u == current_user %>
+            <div>
+              <span><%= gravatar_for u %></span>
+              <h3><%= u.name %></h3>
             </div>
             <% end %>
-          </p>
-        <% end %>
+            <p>
+              <% if current_user != u %>
+              <div id="follow_form">
+                <% if current_user.following?(@user) %>
+                  <%= render 'unfollow' %>
+                <% else %>
+                  <%= render 'follow' %>
+                <% end %>
+                <hr>
+              </div>
+              <% end %>
+            </p>
+          <% end %>
+        <% end %> 
+      <% else %>
+        <h2><%= link_to "ログインしてください", login_path %></h2>
       <% end %> 
     </section>
   </div>

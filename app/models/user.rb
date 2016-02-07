@@ -8,10 +8,7 @@ class User < ActiveRecord::Base
                     
   has_secure_password
   has_many :microposts
-<<<<<<< HEAD
-=======
   
->>>>>>> user-profile
   has_many :following_relationships, class_name:  "Relationship",
                                      foreign_key: "follower_id",
                                      dependent:   :destroy
