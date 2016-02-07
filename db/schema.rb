@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160203134627) do
+=======
+ActiveRecord::Schema.define(version: 20160205103951) do
+>>>>>>> user-profile
 
   create_table "microposts", force: :cascade do |t|
     t.integer  "user_id"

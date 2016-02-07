@@ -1,4 +1,5 @@
 <%= form_for(current_user.following_relationships.build, remote: true) do |f| %>
+<<<<<<< HEAD
 
 <div>
 <%= hidden_field_tag :followed_id, @user.id %>
@@ -6,3 +7,10 @@
 <%= f.submit "Follow", class: "btn btn-primary" %>
 <% end %>
 
+=======
+<div>
+  <%= hidden_field_tag :followed_id, @user.id %>
+</div>
+<%= f.submit "Follow", class: "btn btn-primary" %>
+<% end %>
+>>>>>>> user-profile
