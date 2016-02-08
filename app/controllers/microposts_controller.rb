@@ -9,6 +9,7 @@ class MicropostsController < ApplicationController
     else
       @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc)
       render 'static_pages/home'
+      @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc)
     end
   end
   
