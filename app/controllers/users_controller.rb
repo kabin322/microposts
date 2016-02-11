@@ -38,11 +38,25 @@ class UsersController < ApplicationController
   def followings
     @user = User.find(params[:user_id])
     @users = @user.following_users
+    #自分以外を配列@users_no_meに入れる
+    @users_no_me = []
+    @users.each do |u|
+      if u.id.to_i != params[:user_id].to_i
+        @users_no_me << u
+      end
+    end
   end
   
   def followers
     @user = User.find(params[:user_id])
     @users = @user.follower_users
+    #自分以外を配列@users_no_meに入れる
+    @users_no_me = []
+    @users.each do |u|
+      if u.id.to_i != params[:user_id].to_i
+        @users_no_me << u
+      end
+    end
   end
   
   private

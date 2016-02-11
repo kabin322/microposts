@@ -1,4 +1,5 @@
 <div class="row">
+  
   <aside class="col-xs-4">
     <section class="user-info">
       <h1>
@@ -7,33 +8,31 @@
       </h1>
     </section>
   </aside>
+  
   <div class="col-xs-8">
-    <section class="followings">
-      <% if logged_in? %>
-        <% if @user.following_users.any? %>
-          <h3>Followings (<%= @user.following_users.count-1 %>)</h3>
-          <% @users.each do |u| %>
-            <% unless u == current_user %>
-            <div>
-              <span><%= gravatar_for u %></span>
-              <h3><%= u.name %></h3>
-            </div>
-            <% end %>
-              <% if current_user != u %>
-              <div id="follow_form">
-                <% if current_user.following?(@user) %>
-                  <%= render 'unfollow' %>
-                <% else %>
-                  <%= render 'follow' %>
-                <% end %>
-              </div>
-              <% end %>
-            <hr>
-            <% end %>
-          <% end %>
-        <% else %>
-        <h2><%= link_to "ログインしてください", login_path %></h2>
-      <% end %> 
-    </section>
+    <h3>Followings (<%= @user.following_users.count %>)</h3>
+    <% @users_no_me.each do |u| %>
+      <div class="media">
+        <div class="media-left">
+          <%= gravatar_for u %>
+        </div>
+        <div class="media-body">
+          <h3><%= link_to u.name, u %></h3>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+    
+<!--　フォローのフォーム
+<div id="follow_form">
+  <% if current_user.following?(@user) %>
+    <%= render 'unfollow' %>
+  <% else %>
+    <%= render 'follow' %>
+  <% end %>
+  <hr>
+</div>
+       -->    
+            
   </div>
 </div>
