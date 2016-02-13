@@ -11,7 +11,7 @@
   
   <div class="col-xs-8">
     <h3>Followings (<%= @user.following_users.count %>)</h3>
-    <% @users_no_me.each do |u| %>
+    <% @users.each do |u| %>
       <div class="media">
         <div class="media-left">
           <%= gravatar_for u %>
@@ -22,17 +22,5 @@
       </div>
       <hr>
     <% end %>
-    
-<!--　フォローのフォーム
-<div id="follow_form">
-  <% if current_user.following?(@user) %>
-    <%= render 'unfollow' %>
-  <% else %>
-    <%= render 'follow' %>
-  <% end %>
-  <hr>
-</div>
-       -->    
-            
   </div>
 </div>

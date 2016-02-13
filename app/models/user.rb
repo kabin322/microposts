@@ -21,13 +21,17 @@ class User < ActiveRecord::Base
   
   # 他のユーザーをフォローする
   def follow(other_user)
-    following_relationships.find_or_create_by(followed_id: other_user.id)
+    unless current_user == User.find(params[:id])
+      following_relationships.find_or_create_by(followed_id: other_user.id)
+    end
   end
 
   # フォローしているユーザーをアンフォローする
   def unfollow(other_user)
-    following_relationship = following_relationships.find_by(followed_id: other_user.id)
-    following_relationship.destroy if following_relationship
+    unless current_user == User.find(params[:id])
+      following_relationship = following_relationships.find_by(followed_id: other_user.id)
+      following_relationship.destroy if following_relationship
+    end
   end
 
   # あるユーザーをフォローしているかどうか？
